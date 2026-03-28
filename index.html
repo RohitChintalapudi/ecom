@@ -596,13 +596,14 @@
   }
 
   function loginUser(email, password) {
-    const user = users.find(u => u.email === email && u.password === password);
-    if (!user) return { success: false, msg: "Invalid email or password" };
-    currentUser = { id: user.id, email: user.email, fullname: user.fullname };
-    persistSession();
-    renderApp();
-    return { success: true };
-  }
+  const user = users.find(u => u.email === email && u.password === password);
+  if (!user) return { success: false, msg: "Invalid email or password" };
+  currentUser = { id: user.id, email: user.email, fullname: user.fullname };
+  persistSession();
+  // Don't call renderApp here - let the button handler handle the page change
+  // renderApp(); // Remove this line
+  return { success: true };
+}
 
   function logoutUser() { currentUser = null; persistSession(); cart = []; persistCart(); renderApp(); }
 
@@ -828,14 +829,19 @@
     if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
     
     const doLoginBtn = document.getElementById('doLoginPageBtn');
-    if (doLoginBtn) {
-      doLoginBtn.addEventListener('click', () => {
-        const email = document.getElementById('loginEmail').value.trim();
-        const pwd = document.getElementById('loginPassword').value;
-        const res = loginUser(email, pwd);
-        if (!res.success) document.getElementById('loginErrorMsg').innerText = res.msg;
-      });
+if (doLoginBtn) {
+  doLoginBtn.addEventListener('click', () => {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pwd = document.getElementById('loginPassword').value;
+    const res = loginUser(email, pwd);
+    if (res.success) {
+      // After successful login, redirect to shop page
+      setPage('shop');
+    } else {
+      document.getElementById('loginErrorMsg').innerText = res.msg;
     }
+  });
+}
     
     const switchToRegister = document.getElementById('switchToRegister');
     if (switchToRegister) switchToRegister.addEventListener('click', () => setPage('register'));
