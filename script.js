@@ -116,7 +116,7 @@ function renderCars() {
     // Populate select dropdown
     const option = document.createElement("option");
     option.value = car.id;
-    option.textContent = `${car.name} - $${car.pricePerDay}/day`;
+    option.textContent = `${car.name} - ₹${car.pricePerDay}/day`;
     carSelect.appendChild(option);
   });
 
