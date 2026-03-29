@@ -149,7 +149,7 @@ function calculateTotalPrice() {
   const returnDate = document.getElementById("returnDate").value;
 
   if (!carId || !pickup || !returnDate) {
-    document.getElementById("totalPriceDisplay").innerText = "$0";
+    document.getElementById("totalPriceDisplay").innerText = "₹0";
     return;
   }
 
@@ -159,12 +159,12 @@ function calculateTotalPrice() {
   const start = new Date(pickup);
   const end = new Date(returnDate);
   if (end <= start) {
-    document.getElementById("totalPriceDisplay").innerText = "$0";
+    document.getElementById("totalPriceDisplay").innerText = "₹0";
     return;
   }
   const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
   const total = car.pricePerDay * days;
-  document.getElementById("totalPriceDisplay").innerText = `$${total}`;
+  document.getElementById("totalPriceDisplay").innerText = `₹${total}`;
   return total;
 }
 
