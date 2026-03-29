@@ -225,10 +225,10 @@ function setupBooking() {
       );
       const totalPrice = selectedCar.pricePerDay * days;
       alert(
-        `✅ Booking confirmed!\n\nCar: ${selectedCar.name}\nName: ${name}\nDays: ${days}\nTotal: $${totalPrice}\nThank you ${currentUser.name}!`,
+        `✅ Booking confirmed!\n\nCar: ${selectedCar.name}\nName: ${name}\nDays: ${days}\nTotal: ₹${totalPrice}\nThank you ${currentUser.name}!`,
       );
       form.reset();
-      document.getElementById("totalPriceDisplay").innerText = "$0";
+      document.getElementById("totalPriceDisplay").innerText = "₹0";
     }
   });
 
