@@ -3,7 +3,7 @@ const carsData = [
   {
     id: 1,
     name: "Mercedes-Benz AMG GT",
-    pricePerDay: 1499,
+    pricePerDay: 29999,
     fuel: "Petrol",
     seats: 2,
     image: "./assets/img1.jpg",
@@ -11,7 +11,7 @@ const carsData = [
   {
     id: 2,
     name: "Mercedes-Benz AMG GT Yellow",
-    pricePerDay: 1799,
+    pricePerDay: 27999,
     fuel: "Petrol",
     seats: 2,
     image: "./assets/img2.jpg",
@@ -19,7 +19,7 @@ const carsData = [
   {
     id: 3,
     name: "Mercedes-Benz AMG GT Red",
-    pricePerDay: 3499,
+    pricePerDay: 24999,
     fuel: "Petrol",
     seats: 2,
     image: "./assets/img3.jpg",
@@ -27,7 +27,7 @@ const carsData = [
   {
     id: 4,
     name: "Chevrolet Camaro",
-    pricePerDay: 2199,
+    pricePerDay: 21999,
     fuel: "Petrol",
     seats: 4,
     image: "./assets/img6.jpg",
@@ -35,7 +35,7 @@ const carsData = [
   {
     id: 5,
     name: "Audi RS7",
-    pricePerDay: 2899,
+    pricePerDay: 28999,
     fuel: "Petrol",
     seats: 5,
     image: "./assets/img7.jpg",
@@ -43,7 +43,7 @@ const carsData = [
   {
     id: 6,
     name: "Ford Mustang",
-    pricePerDay: 5999,
+    pricePerDay: 39999,
     fuel: "Petrol",
     seats: 4,
     image: "./assets/img4.jpg",
@@ -51,7 +51,7 @@ const carsData = [
   {
     id: 7,
     name: "Lamborghini Aventador",
-    pricePerDay: 7999,
+    pricePerDay: 39999,
     fuel: "Petrol",
     seats: 2,
     image: "./assets/img5.jpg",
@@ -107,7 +107,7 @@ function renderCars() {
           <span><i class="fas fa-gas-pump"></i> ${car.fuel}</span>
           <span><i class="fas fa-users"></i> ${car.seats} Seats</span>
         </div>
-        <div class="price">$${car.pricePerDay}<span style="font-size:1rem;"> / day</span></div>
+        <div class="price">₹${car.pricePerDay}<span style="font-size:1rem;"> / day</span></div>
         <button class="rent-btn" data-car-id="${car.id}">Rent Now</button>
       </div>
     `;
