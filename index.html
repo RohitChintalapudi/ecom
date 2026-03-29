@@ -3,882 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>ELYSIAN | Premium Minimalist Commerce</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-      color: #1c1917;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-
-    .app-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    /* Hero Section */
-    .hero-section {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border-radius: 32px;
-      padding: 3rem 2rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 8px 18px rgba(0, 0, 0, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path fill="white" d="M10,50 L90,50 M50,10 L50,90 M30,30 L70,70 M30,70 L70,30"/></svg>') repeat;
-      pointer-events: none;
-    }
-
-    .hero-title {
-      font-size: 3rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Navigation */
-    .nav-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #e2e8f0;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #1e293b, #4a4e69);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-btn {
-      background: none;
-      border: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 0.5rem 0;
-      color: #475569;
-      transition: 0.2s;
-      border-bottom: 2px solid transparent;
-    }
-
-    .nav-btn:hover {
-      color: #0f172a;
-      border-bottom-color: #94a3b8;
-    }
-
-    .nav-btn.active {
-      color: #0f172a;
-      border-bottom-color: #0f172a;
-      font-weight: 600;
-    }
-
-    .cart-badge {
-      background: #e2e8f0;
-      padding: 0.2rem 0.6rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-left: 6px;
-    }
-
-    /* Section Headers */
-    .section-header {
-      margin: 2rem 0 1.5rem 0;
-      position: relative;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.02em;
-      display: inline-block;
-      background: linear-gradient(135deg, #1e293b, #334155);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .section-subtitle {
-      color: #64748b;
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* Products Grid */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 24px;
-      padding: 1.4rem;
-      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-      border: 1px solid #eef2ff;
-      box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2), 0 8px 18px -6px rgba(0, 0, 0, 0.1);
-      border-color: #cbd5e1;
-    }
-
-    .product-img {
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      height: 220px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-      overflow: hidden;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
-    }
-
-    .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .product-card:hover .product-img img {
-      transform: scale(1.08);
-    }
-
-    .product-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: #0f172a;
-    }
-
-    .product-price {
-      font-weight: 700;
-      color: #2d6a4f;
-      margin: 0.6rem 0;
-      font-size: 1.3rem;
-    }
-
-    .add-btn {
-      width: 100%;
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      border: 1px solid #e2e8f0;
-      padding: 0.7rem;
-      border-radius: 60px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 0.8rem;
-      font-size: 0.9rem;
-      color: #1e293b;
-    }
-
-    .add-btn:hover {
-      background: linear-gradient(135deg, #eef2ff, #e2e8f0);
-      border-color: #cbd5e1;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      transform: translateY(-1px);
-    }
-
-    /* Panel */
-    .panel {
-      background: white;
-      border-radius: 28px;
-      padding: 2rem;
-      border: 1px solid #eef2ff;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02);
-      margin-top: 1rem;
-    }
-
-    /* Cart Items */
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid #f1f5f9;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .cart-item-image {
-      width: 70px;
-      height: 70px;
-      border-radius: 16px;
-      object-fit: cover;
-      background: #f8fafc;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .cart-item-info {
-      flex: 2;
-      min-width: 150px;
-    }
-
-    .cart-item-info strong {
-      font-size: 1rem;
-      color: #0f172a;
-    }
-
-    .cart-qty {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .qty-btn {
-      background: #f1f5f9;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-
-    .qty-btn:hover {
-      background: #e2e8f0;
-      transform: scale(1.05);
-    }
-
-    .remove-item {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      cursor: pointer;
-      font-size: 1.2rem;
-      margin-left: 12px;
-      transition: 0.2s;
-    }
-
-    .remove-item:hover {
-      color: #dc2626;
-      transform: scale(1.1);
-    }
-
-    .cart-total {
-      margin-top: 1.5rem;
-      text-align: right;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: #0f172a;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      color: white;
-      border: none;
-      padding: 0.9rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      width: 100%;
-      margin-top: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #334155, #1e293b);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #cbd5e1;
-      padding: 0.7rem 1.2rem;
-      border-radius: 60px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-weight: 500;
-    }
-
-    .btn-outline:hover {
-      background: #f8fafc;
-      border-color: #94a3b8;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    /* Auth Pages */
-    .auth-page {
-      max-width: 460px;
-      margin: 2rem auto;
-    }
-
-    .auth-card {
-      background: white;
-      border-radius: 32px;
-      padding: 2.5rem;
-      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.08);
-      border: 1px solid #eef2ff;
-    }
-
-    .auth-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #1e293b, #334155);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .auth-sub {
-      color: #64748b;
-      margin-bottom: 1.8rem;
-      font-size: 0.9rem;
-    }
-
-    .auth-input {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      margin: 0.7rem 0;
-      border: 1px solid #e2e8f0;
-      border-radius: 60px;
-      background: #fff;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-
-    .auth-input:focus {
-      outline: none;
-      border-color: #334155;
-      box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
-      transform: translateY(-1px);
-    }
-
-    .error-msg {
-      color: #dc2626;
-      font-size: 0.8rem;
-      margin-top: 0.3rem;
-    }
-
-    .empty-state {
-      text-align: center;
-      color: #64748b;
-      padding: 3rem;
-    }
-
-    .auth-switch-link {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-    }
-
-    .auth-switch-link button {
-      background: none;
-      border: none;
-      color: #1e293b;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: underline;
-      margin-left: 0.3rem;
-    }
-
-    .welcome-header {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 1.5rem;
-    }
-
-    .user-chip {
-      background: linear-gradient(135deg, #f1f5f9, #eef2ff);
-      padding: 0.5rem 1.2rem;
-      border-radius: 60px;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      font-weight: 500;
-    }
-
-    /* Category Badges */
-    .category-badge {
-      display: inline-block;
-      padding: 0.2rem 0.8rem;
-      background: #f1f5f9;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      color: #475569;
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 640px) {
-      .app-container {
-        padding: 1rem;
-      }
-      .hero-title {
-        font-size: 2rem;
-      }
-      .hero-section {
-        padding: 2rem 1rem;
-      }
-      .nav-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .auth-card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <title>VelocityRent | Premium Car Rental</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app-container" id="app"></div>
 
-<script>
-  // STORAGE KEYS
-  const STORAGE_KEYS = {
-    USERS: 'elysian_users_final',
-    SESSION: 'elysian_session_final',
-    PRODUCTS: 'elysian_products_final',
-    CART: 'elysian_cart_final'
-  };
-
-  // PRODUCTS WITH REAL IMAGES (20 items with categories)
-  const DEFAULT_PRODUCTS = [
-    { id: 'p1', name: 'Minimal Linen Shirt', price: 49, image: 'https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=400&h=400&fit=crop', category: 'Apparel' },
-    { id: 'p2', name: 'Slim Denim Jeans', price: 79, image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&h=400&fit=crop', category: 'Apparel' },
-    { id: 'p3', name: 'Leather Weekend Bag', price: 129, image: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=400&h=400&fit=crop', category: 'Accessories' },
-    { id: 'p4', name: 'Ceramic Mug Set', price: 34, image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop', category: 'Home' },
-    { id: 'p5', name: 'Wireless Earbuds Pro', price: 89, image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop', category: 'Tech' },
-    { id: 'p7', name: 'Oversized Wool Sweater', price: 99, image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop', category: 'Apparel' },
-    { id: 'p8', name: 'Slim Leather Wallet', price: 45, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=400&fit=crop', category: 'Accessories' },
-    { id: 'p9', name: 'Smart Watch Band', price: 59, image: 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400&h=400&fit=crop', category: 'Tech' },
-    { id: 'p10', name: 'Aromatic Candle', price: 28, image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&h=400&fit=crop', category: 'Home' },
-    { id: 'p11', name: 'Minimalist Backpack', price: 89, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop', category: 'Accessories' },
-    { id: 'p12', name: 'Cotton T-shirt (2 pack)', price: 42, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop', category: 'Apparel' },
-    { id: 'p14', name: 'Wireless Charger', price: 35, image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop', category: 'Tech' },
-    { id: 'p15', name: 'Ceramic Plant Pot', price: 24, image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=400&fit=crop', category: 'Home' },
-    { id: 'p16', name: 'Wool Beanie', price: 27, image: 'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=400&h=400&fit=crop', category: 'Apparel' },
-    { id: 'p17', name: 'Stainless Steel Bottle', price: 32, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop', category: 'Accessories' },
-    { id: 'p18', name: 'Noise Cancelling Headphones', price: 149, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop', category: 'Tech' },
-    { id: 'p19', name: 'Minimalist Desk Lamp', price: 67, image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&h=400&fit=crop', category: 'Home' },
-    { id: 'p20', name: 'Leather Card Holder', price: 29, image: 'https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=400&h=400&fit=crop', category: 'Accessories' }
-  ];
-
-  function loadData(key, defaultValue) {
-    const stored = localStorage.getItem(key);
-    if (stored) {
-      try { return JSON.parse(stored); }
-      catch(e) { return defaultValue; }
-    }
-    return defaultValue;
-  }
-
-  function saveData(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-  }
-
-  let users = loadData(STORAGE_KEYS.USERS, []);
-  let currentUser = loadData(STORAGE_KEYS.SESSION, null);
-  let products = loadData(STORAGE_KEYS.PRODUCTS, DEFAULT_PRODUCTS);
-  let cart = loadData(STORAGE_KEYS.CART, []);
-
-  function persistCart() { saveData(STORAGE_KEYS.CART, cart); }
-  function persistUsers() { saveData(STORAGE_KEYS.USERS, users); }
-  function persistSession() { saveData(STORAGE_KEYS.SESSION, currentUser); }
-
-  function findCartItemIndex(productId) {
-    return cart.findIndex(item => item.id === productId);
-  }
-
-  function addToCart(product) {
-    if (!currentUser) {
-      alert("Please login to add items to cart.");
-      return false;
-    }
-    const existingIndex = findCartItemIndex(product.id);
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-    persistCart();
-    renderApp();
-    return true;
-  }
-
-  function updateQuantity(productId, delta) {
-    const idx = findCartItemIndex(productId);
-    if (idx !== -1) {
-      const newQty = cart[idx].quantity + delta;
-      if (newQty <= 0) cart.splice(idx, 1);
-      else cart[idx].quantity = newQty;
-      persistCart();
-      renderApp();
-    }
-  }
-
-  function removeCartItem(productId) {
-    const idx = findCartItemIndex(productId);
-    if (idx !== -1) { cart.splice(idx, 1); persistCart(); renderApp(); }
-  }
-
-  function clearCart() { cart = []; persistCart(); renderApp(); }
-
-  function checkout() {
-    if (!currentUser) { alert("Please login first"); return; }
-    if (cart.length === 0) { alert("Your cart is empty"); return; }
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
-    alert(`🎉 Order confirmed, ${currentUser.fullname}! Total: $${total}. Thank you for shopping at ELYSIAN.`);
-    clearCart();
-  }
-
-  function registerUser(email, password, fullname) {
-    if (!email || !password || !fullname) return { success: false, msg: "All fields required" };
-    if (password.length < 4) return { success: false, msg: "Password must be at least 4 characters" };
-    if (users.find(u => u.email === email)) return { success: false, msg: "Email already registered" };
-    users.push({ id: Date.now().toString(), email, password, fullname });
-    persistUsers();
-    return { success: true, msg: "Registration successful! Please login." };
-  }
-
-  function loginUser(email, password) {
-  const user = users.find(u => u.email === email && u.password === password);
-  if (!user) return { success: false, msg: "Invalid email or password" };
-  currentUser = { id: user.id, email: user.email, fullname: user.fullname };
-  persistSession();
-  // Don't call renderApp here - let the button handler handle the page change
-  // renderApp(); // Remove this line
-  return { success: true };
-}
-
-  function logoutUser() { currentUser = null; persistSession(); cart = []; persistCart(); renderApp(); }
-
-  let currentPage = 'shop';
-  function setPage(page) { currentPage = page; renderApp(); }
-
-  // Render Shop with Hero & Section Headers
-  function renderShopPage() {
-    const cartCount = cart.reduce((acc, i) => acc + i.quantity, 0);
-    const userSection = currentUser 
-      ? `<div class="welcome-header"><div class="user-chip">✨ ${escapeHtml(currentUser.fullname)}</div></div>`
-      : `<div class="welcome-header"><button class="btn-outline" id="gotoLoginFromShop" style="padding: 0.4rem 1.2rem;">Sign in to shop →</button></div>`;
-    
-    // Group products by category for better presentation
-    const apparel = products.filter(p => p.category === 'Apparel');
-    const accessories = products.filter(p => p.category === 'Accessories');
-    const tech = products.filter(p => p.category === 'Tech');
-    const home = products.filter(p => p.category === 'Home');
-    
-    const renderProductGrid = (productList, title) => {
-      if (productList.length === 0) return '';
-      return `
-        <div class="section-header">
-          <h2 class="section-title">${title}</h2>
-          <div class="section-subtitle">Curated essentials for modern living</div>
-        </div>
-        <div class="products-grid">
-          ${productList.map(prod => `
-            <div class="product-card">
-              <div class="product-img"><img src="${prod.image}" alt="${escapeHtml(prod.name)}" loading="lazy"></div>
-              <div class="category-badge">${prod.category}</div>
-              <div class="product-title">${escapeHtml(prod.name)}</div>
-              <div class="product-price">$${prod.price}</div>
-              <button class="add-btn" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.price}" data-img="${prod.image}">Add to cart →</button>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    };
-    
-    return `
-      <div class="nav-bar">
-        <div class="logo" id="logoHome">✦ ELYSIAN</div>
-        <div class="nav-links">
-          <button class="nav-btn ${currentPage === 'shop' ? 'active' : ''}" data-page="shop">Shop</button>
-          <button class="nav-btn ${currentPage === 'cart' ? 'active' : ''}" data-page="cart">Cart ${cartCount > 0 ? `<span class="cart-badge">${cartCount}</span>` : ''}</button>
-          ${!currentUser ? `<button class="nav-btn" data-page="login">Sign in</button>` : `<button class="nav-btn" data-page="logout">Sign out</button>`}
-        </div>
+  <!-- ======================== NAVBAR ======================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <i class="fas fa-car-side"></i>
+        <span>Velocity<span class="highlight">Rent</span></span>
       </div>
-      <div class="hero-section">
-        <h1 class="hero-title">Elevate Your Everyday</h1>
-        <p class="hero-subtitle">Minimalist essentials crafted with intention — timeless design, exceptional quality.</p>
-      </div>
-      ${userSection}
-      ${renderProductGrid(apparel, 'Apparel & Wear')}
-      ${renderProductGrid(accessories, 'Accessories')}
-      ${renderProductGrid(tech, 'Tech & Gadgets')}
-      ${renderProductGrid(home, 'Home & Living')}
-    `;
-  }
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#cars" class="nav-link">Cars</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="auth-nav" id="authNav">
+            <a href="#" id="loginRegisterBtn" class="btn-outline-light">Login / Register</a>
+          </li>
+        </ul>
+        <div class="user-greeting" id="userGreeting" style="display: none;">
+          <span id="userNameDisplay"></span>
+          <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+        <div class="mobile-menu-toggle" id="mobileToggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  function renderCartPage() {
-    const cartCount = cart.reduce((acc, i) => acc + i.quantity, 0);
-    let content = '';
-    if (!currentUser) {
-      content = `<div class="panel"><div class="empty-state">🔒 Please login to view your cart.<br><button class="btn-outline" id="gotoLoginFromCart" style="margin-top: 1rem;">Go to Login</button></div></div>`;
-    } else if (cart.length === 0) {
-      content = `<div class="panel"><div class="empty-state">🛒 Your cart is empty.<br><span style="font-size:0.85rem;">Discover our curated collection</span></div></div>`;
-    } else {
-      let total = 0;
-      const cartItemsHtml = cart.map(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        return `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${escapeHtml(item.name)}" class="cart-item-image">
-            <div class="cart-item-info">
-              <strong>${escapeHtml(item.name)}</strong><br>
-              <span style="color:#2d6a4f; font-weight:600;">$${item.price}</span>
+  <!-- ======================== HERO SECTION ======================== -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Drive your dream, <br>anywhere you desire</h1>
+      <p>Unbeatable rates • Luxury & Economy fleet • 24/7 support</p>
+      <a href="#cars" class="btn-primary hero-btn">Book Now <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- ======================== CAR LISTING SECTION (6 cars) ======================== -->
+  <section id="cars" class="cars-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Premium Fleet</h2>
+        <p>Choose from a wide range of vehicles for any occasion</p>
+      </div>
+      <div class="cars-grid" id="carsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ======================== BOOKING FORM SECTION ======================== -->
+  <section id="booking" class="booking-section">
+    <div class="container">
+      <div class="booking-wrapper">
+        <div class="booking-info">
+          <h3><i class="fas fa-calendar-check"></i> Reserve your ride</h3>
+          <p>Only registered users can book. Login to enjoy seamless rentals!</p>
+        </div>
+        <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name <span>*</span></label>
+              <input type="text" id="bookingName" placeholder="John Carter" required>
+              <small class="error-msg" id="nameError"></small>
             </div>
-            <div class="cart-qty">
-              <button class="qty-btn" data-action="decr" data-id="${item.id}">−</button>
-              <span style="min-width: 28px; text-align:center; font-weight:500;">${item.quantity}</span>
-              <button class="qty-btn" data-action="incr" data-id="${item.id}">+</button>
-              <button class="remove-item" data-action="remove" data-id="${item.id}">✕</button>
+            <div class="form-group">
+              <label>Phone Number <span>*</span></label>
+              <input type="tel" id="bookingPhone" placeholder="+1 234 567 890" required>
+              <small class="error-msg" id="phoneError"></small>
             </div>
           </div>
-        `;
-      }).join('');
-      content = `
-        <div class="panel">
-          <h2 style="margin-bottom: 1rem; font-size:1.5rem;">Shopping Cart</h2>
-          ${cartItemsHtml}
-          <div class="cart-total">Total: $${total.toFixed(2)}</div>
-          <button class="btn-primary" id="checkoutBtn">Proceed to Checkout</button>
-          <button class="btn-outline" id="clearCartBtn" style="margin-top: 0.8rem; width:100%;">Clear Cart</button>
-        </div>
-      `;
-    }
-    
-    return `
-      <div class="nav-bar">
-        <div class="logo" id="logoHome">✦ ELYSIAN</div>
-        <div class="nav-links">
-          <button class="nav-btn" data-page="shop">Shop</button>
-          <button class="nav-btn ${currentPage === 'cart' ? 'active' : ''}" data-page="cart">Cart ${cartCount > 0 ? `<span class="cart-badge">${cartCount}</span>` : ''}</button>
-          ${!currentUser ? `<button class="nav-btn" data-page="login">Sign in</button>` : `<button class="nav-btn" data-page="logout">Sign out</button>`}
-        </div>
-      </div>
-      <div class="hero-section" style="padding: 2rem; margin-bottom: 1.5rem;">
-        <h1 class="hero-title" style="font-size:2rem;">Your Cart</h1>
-        <p class="hero-subtitle">Review and complete your purchase</p>
-      </div>
-      ${content}
-    `;
-  }
-
-  function renderLoginPage() {
-    return `
-      <div class="nav-bar">
-        <div class="logo" id="logoHome">✦ ELYSIAN</div>
-        <div class="nav-links">
-          <button class="nav-btn" data-page="shop">Shop</button>
-          <button class="nav-btn" data-page="cart">Cart</button>
-          <button class="nav-btn active" data-page="login">Sign in</button>
-        </div>
-      </div>
-      <div class="auth-page">
-        <div class="auth-card">
-          <div class="auth-title">Welcome back</div>
-          <div class="auth-sub">Sign in to continue shopping</div>
-          <input type="email" id="loginEmail" class="auth-input" placeholder="Email address" autocomplete="email">
-          <input type="password" id="loginPassword" class="auth-input" placeholder="Password">
-          <div id="loginErrorMsg" class="error-msg"></div>
-          <button class="btn-primary" id="doLoginPageBtn">Log in</button>
-          <div class="auth-switch-link">
-            New to ELYSIAN? <button id="switchToRegister">Create account</button>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Select Car <span>*</span></label>
+              <select id="bookingCar" required></select>
+              <small class="error-msg" id="carError"></small>
+            </div>
+            <div class="form-group">
+              <label>Pickup Date <span>*</span></label>
+              <input type="date" id="pickupDate" required>
+              <small class="error-msg" id="pickupError"></small>
+            </div>
           </div>
-          <div style="margin-top: 1rem; font-size: 0.75rem; text-align: center; color: #64748b;">Demo: demo@elysian.com / demo123</div>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderRegisterPage() {
-    return `
-      <div class="nav-bar">
-        <div class="logo" id="logoHome">✦ ELYSIAN</div>
-        <div class="nav-links">
-          <button class="nav-btn" data-page="shop">Shop</button>
-          <button class="nav-btn" data-page="cart">Cart</button>
-          <button class="nav-btn" data-page="login">Sign in</button>
-        </div>
-      </div>
-      <div class="auth-page">
-        <div class="auth-card">
-          <div class="auth-title">Join ELYSIAN</div>
-          <div class="auth-sub">Start your minimalist journey</div>
-          <input type="text" id="regFullName" class="auth-input" placeholder="Full name">
-          <input type="email" id="regEmailAddr" class="auth-input" placeholder="Email address">
-          <input type="password" id="regPasswordVal" class="auth-input" placeholder="Password (min 4 chars)">
-          <div id="regErrorMsg" class="error-msg"></div>
-          <button class="btn-primary" id="doRegisterPageBtn">Create account</button>
-          <div class="auth-switch-link">
-            Already have an account? <button id="switchToLogin">Sign in</button>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Return Date <span>*</span></label>
+              <input type="date" id="returnDate" required>
+              <small class="error-msg" id="returnError"></small>
+            </div>
+            <div class="form-group total-price-group">
+              <label>Total Price</label>
+              <div class="total-price-display" id="totalPriceDisplay">$0</div>
+            </div>
           </div>
-        </div>
+          <button type="submit" class="btn-primary btn-full" id="bookSubmitBtn">Rent Now</button>
+          <div id="bookingMessage" class="booking-message"></div>
+        </form>
       </div>
-    `;
-  }
+    </div>
+  </section>
 
-  function renderApp() {
-    const appEl = document.getElementById('app');
-    if (!appEl) return;
-    let html = '';
-    if (currentPage === 'shop') html = renderShopPage();
-    else if (currentPage === 'cart') html = renderCartPage();
-    else if (currentPage === 'login') html = renderLoginPage();
-    else if (currentPage === 'register') html = renderRegisterPage();
-    appEl.innerHTML = html;
-    attachEventListeners();
-  }
+  <!-- ======================== ABOUT SECTION ======================== -->
+  <section id="about" class="about-section">
+    <div class="container about-container">
+      <div class="about-text">
+        <h2>About VelocityRent</h2>
+        <p>Founded in 2020, VelocityRent redefines car rental with transparency, quality, and simplicity. Whether you need a compact car for city trips or a luxury SUV for a weekend getaway, our curated fleet ensures premium comfort. All vehicles are sanitized, fully insured, and equipped with modern tech.</p>
+        <p><i class="fas fa-check-circle"></i> 500+ happy customers &nbsp;|&nbsp; <i class="fas fa-shield-alt"></i> 24/7 roadside assistance</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><i class="fas fa-car"></i><h3>40+</h3><p>Vehicles</p></div>
+        <div class="stat-card"><i class="fas fa-map-marker-alt"></i><h3>12</h3><p>Locations</p></div>
+        <div class="stat-card"><i class="fas fa-star"></i><h3>4.9</h3><p>Rating</p></div>
+      </div>
+    </div>
+  </section>
 
-  function attachEventListeners() {
-    const logo = document.getElementById('logoHome');
-    if (logo) logo.addEventListener('click', () => setPage('shop'));
-    
-    document.querySelectorAll('.nav-btn[data-page]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const page = btn.getAttribute('data-page');
-        if (page === 'logout') logoutUser();
-        else setPage(page);
-      });
-    });
-    
-    document.querySelectorAll('.add-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        addToCart({
-          id: btn.dataset.id,
-          name: btn.dataset.name,
-          price: parseFloat(btn.dataset.price),
-          image: btn.dataset.img
-        });
-      });
-    });
-    
-    document.querySelectorAll('.qty-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.id;
-        if (btn.dataset.action === 'incr') updateQuantity(id, 1);
-        if (btn.dataset.action === 'decr') updateQuantity(id, -1);
-      });
-    });
-    
-    document.querySelectorAll('.remove-item').forEach(btn => {
-      btn.addEventListener('click', () => removeCartItem(btn.dataset.id));
-    });
-    
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
-    
-    const clearCartBtn = document.getElementById('clearCartBtn');
-    if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
-    
-    const doLoginBtn = document.getElementById('doLoginPageBtn');
-if (doLoginBtn) {
-  doLoginBtn.addEventListener('click', () => {
-    const email = document.getElementById('loginEmail').value.trim();
-    const pwd = document.getElementById('loginPassword').value;
-    const res = loginUser(email, pwd);
-    if (res.success) {
-      // After successful login, redirect to shop page
-      setPage('shop');
-    } else {
-      document.getElementById('loginErrorMsg').innerText = res.msg;
-    }
-  });
-}
-    
-    const switchToRegister = document.getElementById('switchToRegister');
-    if (switchToRegister) switchToRegister.addEventListener('click', () => setPage('register'));
-    
-    const doRegisterBtn = document.getElementById('doRegisterPageBtn');
-    if (doRegisterBtn) {
-      doRegisterBtn.addEventListener('click', () => {
-        const fullname = document.getElementById('regFullName').value.trim();
-        const email = document.getElementById('regEmailAddr').value.trim();
-        const pwd = document.getElementById('regPasswordVal').value;
-        const res = registerUser(email, pwd, fullname);
-        if (!res.success) document.getElementById('regErrorMsg').innerText = res.msg;
-        else { alert(res.msg); setPage('login'); }
-      });
-    }
-    
-    const switchToLogin = document.getElementById('switchToLogin');
-    if (switchToLogin) switchToLogin.addEventListener('click', () => setPage('login'));
-    
-    const gotoLoginFromShop = document.getElementById('gotoLoginFromShop');
-    if (gotoLoginFromShop) gotoLoginFromShop.addEventListener('click', () => setPage('login'));
-    
-    const gotoLoginFromCart = document.getElementById('gotoLoginFromCart');
-    if (gotoLoginFromCart) gotoLoginFromCart.addEventListener('click', () => setPage('login'));
-  }
-  
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
-  }
-  
-  if (users.length === 0) {
-    users.push({ id: '1', email: 'demo@elysian.com', password: 'demo123', fullname: 'Alex Morgan' });
-    persistUsers();
-  }
-  
-  renderApp();
-</script>
+  <!-- ======================== CONTACT SECTION ======================== -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-container">
+      <h2>Get in Touch</h2>
+      <div class="contact-details">
+        <div class="contact-item"><i class="fas fa-envelope"></i> support@velocityrent.com</div>
+        <div class="contact-item"><i class="fas fa-phone-alt"></i>  +91 1234567890</div>
+        <div class="contact-item"><i class="fas fa-map-pin"></i> Road-32,Banglore, Karnataka</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p class="copyright">&copy; 2025 VelocityRent. Drive with style. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MODAL: Login / Register (popup) -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="loginTabBtn">Login</button>
+        <button class="tab-btn" id="registerTabBtn">Register</button>
+      </div>
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form active-form">
+        <h3>Welcome Back</h3>
+        <div class="form-group">
+          <input type="email" id="loginEmail" placeholder="Email address" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="loginPassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Login</button>
+        <div class="auth-message" id="loginMessage"></div>
+      </form>
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form">
+        <h3>Create Account</h3>
+        <div class="form-group">
+          <input type="text" id="regName" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="regEmail" placeholder="Email address" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="regPassword" placeholder="Password (min 4 chars)" required>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Register</button>
+        <div class="auth-message" id="registerMessage"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
